@@ -7,7 +7,8 @@ $(document).ready(function() {
 		console.log(position);
     var city;
     $.ajax({
-      url: 'https://crossorigin.me/http://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude + '&sensor=true',
+      //url: 'https://crossorigin.me/http://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude + '&sensor=true',
+      url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude + '',
       dataType: 'json'
     })
     .done(function(data) {
