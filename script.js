@@ -17,6 +17,7 @@ $(document).ready(function() {
     'partly-cloudy-night': 'wi-night-alt-cloudy'
   };
 
+  var temperatureF;
   // getting data from the browsers geolocation API (latitude, longitude)
   if("geolocation" in navigator) {
 	navigator.geolocation.getCurrentPosition(function(position) {
@@ -42,18 +43,23 @@ $(document).ready(function() {
       console.log(data.currently);
       var weather = data.currently.summary;
       var icon = data.currently.icon;
+      temperatureF = data.currently.temperature;
       $('.weatherDescription').html(weather);
       $('.weatherIcon').html('<i class="wi ' + weatherIcons[icon] + ' icon"></i>');
-      console.log(weatherIcons[icon]);
-      var temperatureF = data.currently.temperature;
       $('.temperature').html(temperatureF + ' ℉');
-      console.log(temperatureF.toString());
+
     });
 	});
   }
 
 
-  $('.toggle').on('click', function() {
-    console.log('success');
-  });
+  $('.toggle').click(function() {
+    var temperatureC = Math.round((temperatureF - 32)/1.8 * 100)/100;
+    $('.temperature').html(temperatureC + ' ℃');
+    //if($('.temperature').html === temperatureC + ' ℃') {
+    //$('.temperature').html(temperatureF + ' ℉');
+    //}
+});
+
+
 });
