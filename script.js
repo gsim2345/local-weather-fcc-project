@@ -1,7 +1,9 @@
 $(document).ready(function() {
   // initializing material JS
   $.material.init();
-  $( "div" ).effect( "slide", 800 );
+  //$( "div" ).effect( "slide", 800 );
+
+  //connecting weather-icons to the icons property from the weather API
   var weatherIcons = {
     'clear-day': 'wi-day-sunny',
     'clear-night': 'wi-night-clear',
@@ -14,6 +16,7 @@ $(document).ready(function() {
     'partly-cloudy-day': 'wi-day-cloudy',
     'partly-cloudy-night': 'wi-night-alt-cloudy'
   };
+
   // getting data from the browsers geolocation API (latitude, longitude)
   if("geolocation" in navigator) {
 	navigator.geolocation.getCurrentPosition(function(position) {
@@ -40,7 +43,8 @@ $(document).ready(function() {
       var weather = data.currently.summary;
       var icon = data.currently.icon;
       $('.weatherDescription').html(weather);
-      $('.weatherIcon').html(icon);
+      $('.weatherIcon').html('<i class="wi ' + weatherIcons[icon] + ' icon"></i>');
+      console.log(weatherIcons[icon]);
       var temperatureF = data.currently.temperature;
       $('.temperature').html(temperatureF + ' ℉');
       console.log(temperatureF.toString());
@@ -48,4 +52,8 @@ $(document).ready(function() {
 	});
   }
 
+
+  $('.toggle').on('click', function() {
+    console.log('success');
+  });
 });

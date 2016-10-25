@@ -22,10 +22,35 @@ body {
   background-color: rgba(249, 249, 249, 0.30);
   margin-top: 70px;
   min-height: 400px;
+  animation: fadeInFromNone 0.5s ease-out;
 }
 
 .font {
   font-family: 'Muli', sans-serif;
   font-weight: 200;
   text-shadow: 2px 2px 1px black;
+}
+
+.icon {
+  font-size: 50px;
+}
+
+.divElement {
+  margin-top: 25px;
+}
+
+.temperatureType {
+  font-size: 25px;
+  color: white;
+  padding-bottom: 0px;
+  margin-right: 20px;
+}
+
+.togglebutton label input[type=checkbox]:checked+.toggle:after {
+    /* background-color: rgba(169, 170, 171, 0); */
+    background-color: white;
+}
+.togglebutton label input[type=checkbox]:checked+.toggle {
+    /* background-color: white; */
+    background-color: rgba(80,80,80,.7);
 }
