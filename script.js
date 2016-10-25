@@ -24,9 +24,11 @@ $(document).ready(function() {
     .done(function(data) {
       console.log(data.currently);
       var weather = data.currently.summary;
-      $('.weatherDescription').html(weather + ' ' + data.currently.icon);
+      var icon = data.currently.icon;
+      $('.weatherDescription').html(weather);
+      $('.weatherIcon').html(icon);
       var temperatureF = data.currently.temperature;
-      $('h3 span.temperature').html(temperatureF + '℉');
+      $('.temperature').html(temperatureF + ' ℉');
       console.log(temperatureF.toString());
     });
 	});
