@@ -21,8 +21,11 @@ body {
   color: white;
   background-color: rgba(249, 249, 249, 0.30);
   margin-top: 70px;
+  min-height: 400px;
 }
 
 .font {
   font-family: 'Muli', sans-serif;
+  font-weight: 200;
+  text-shadow: 2px 2px 1px black;
 }
