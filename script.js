@@ -45,7 +45,15 @@ $(document).ready(function() {
       var icon = data.currently.icon;
       temperatureF = data.currently.temperature;
       $('.weatherDescription').html(weather);
-      $('.weatherIcon').html('<i class="wi ' + weatherIcons[icon] + ' icon"></i>');
+      // if the weatherIcons object has the property the api provides as icon
+      if (weatherIcons.hasOwnProperty(icon) ) {
+        //display this icon
+        $('.weatherIcon').html('<i class="wi ' + weatherIcons[icon] + ' icon"></i>');
+      } else {
+        // display a neutral icon
+        $('.weatherIcon').html('<i class="wi wi-cloud icon"></i>');
+      }
+
       $('.temperature').html(temperatureF + ' ℉');
 
     });
@@ -54,6 +62,7 @@ $(document).ready(function() {
 
 
   $('.togglebutton').click(function() {
+    // getting Celsius from Farenheit
     var temperatureC = Math.round((temperatureF - 32)/1.8 * 100)/100;
     if ($('#toggleCF').prop('checked')) {
       $('.temperature').html(temperatureC + ' ℃');
