@@ -53,13 +53,15 @@ $(document).ready(function() {
   }
 
 
-  $('.toggle').click(function() {
+  $('.togglebutton').click(function() {
     var temperatureC = Math.round((temperatureF - 32)/1.8 * 100)/100;
-    $('.temperature').html(temperatureC + ' ℃');
-    //if($('.temperature').html === temperatureC + ' ℃') {
-    //$('.temperature').html(temperatureF + ' ℉');
-    //}
-});
+    if ($('#toggleCF').prop('checked')) {
+      $('.temperature').html(temperatureC + ' ℃');
+    } else {
+      $('.temperature').html(temperatureF + ' ℉');
+    }
+
+  });
 
 
 });
