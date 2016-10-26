@@ -18,12 +18,12 @@ $(document).ready(function() {
   };
 
   var temperatureF;
+  var temperatureC;
+
   // getting data from the browsers geolocation API (latitude, longitude)
   if("geolocation" in navigator) {
 	navigator.geolocation.getCurrentPosition(function(position) {
-		console.log(position);
-
-    // getting data from google's geocode API to determine the place from lat and long
+		// getting data from google's geocode API to determine the place from lat and long
     $.ajax({
       url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude + '',
       dataType: 'json'
@@ -31,8 +31,8 @@ $(document).ready(function() {
     .done(function(data) {
       var city = data.results[0].address_components[2].long_name;
       $('.city').html(city);
-
     });
+
 
     // getting weather data from darksky.net API
     $.ajax({
@@ -44,6 +44,9 @@ $(document).ready(function() {
       var weather = data.currently.summary;
       var icon = data.currently.icon;
       temperatureF = data.currently.temperature;
+      // getting Celsius from Farenheit
+      temperatureC = Math.round((temperatureF - 32)/1.8 * 100)/100;
+
       $('.weatherDescription').html(weather);
       // if the weatherIcons object has the property the api provides as icon
       if (weatherIcons.hasOwnProperty(icon) ) {
@@ -53,21 +56,20 @@ $(document).ready(function() {
         // display a neutral icon
         $('.weatherIcon').html('<i class="wi wi-cloud icon"></i>');
       }
-
-      $('.temperature').html(temperatureF + ' ℉');
+      $('.temperature').html(temperatureC + ' ℃');
 
     });
 	});
   }
 
 
+  // togglebutton switching between Celsius and Farenheit
   $('.togglebutton').click(function() {
-    // getting Celsius from Farenheit
-    var temperatureC = Math.round((temperatureF - 32)/1.8 * 100)/100;
+
     if ($('#toggleCF').prop('checked')) {
-      $('.temperature').html(temperatureC + ' ℃');
-    } else {
       $('.temperature').html(temperatureF + ' ℉');
+    } else {
+      $('.temperature').html(temperatureC + ' ℃');
     }
 
   });
