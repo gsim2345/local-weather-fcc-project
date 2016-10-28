@@ -33,7 +33,6 @@ body {
 
 .icon {
   font-size: 75px;
-  margin-top: 20px;
 }
 
 .divElement {
@@ -53,5 +52,18 @@ body {
 }
 .togglebutton label input[type=checkbox]:checked+.toggle {
     /* background-color: white; */
-    background-color: rgba(80,80,80,.7);
+    background-color: rgba(80,80,80,4);
 }
+
+.form-control {
+  color: white;
+}
+
+.form-group.is-focused .form-control{
+  background-image: linear-gradient(rgba(0, 150, 136, 0),rgba(0, 150, 136, 0)),linear-gradient(#D2D2D2,#D2D2D2);
+}
+
+.input-group-btn:last-child>.btn, .input-group-btn:last-child>.btn-group {
+    z-index: 2;
+    margin-left: 20px;
+  }

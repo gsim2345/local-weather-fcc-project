@@ -1,7 +1,7 @@
 $(document).ready(function() {
   // initializing material JS
   $.material.init();
-  //$( "div" ).effect( "slide", 800 );
+
 
   //connecting weather-icons to the icons property from the weather API
   var weatherIcons = {
@@ -23,6 +23,7 @@ $(document).ready(function() {
   // getting data from the browsers geolocation API (latitude, longitude)
   if("geolocation" in navigator) {
 	navigator.geolocation.getCurrentPosition(function(position) {
+    console.log(position);
 		// getting data from google's geocode API to determine the place from lat and long
     $.ajax({
       url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude + '',
@@ -33,6 +34,14 @@ $(document).ready(function() {
       $('.city').html(city);
     });
 
+    //$.ajax({
+    //  url: 'http://api.sunrise-sunset.org/json?lat=' + position.coords.latitude + '&lng=' + position.coords.longitude + '&date=today',
+    //  dataType: 'json'
+    //})
+    //.done(function(data) {
+    //  console.log(data);
+    //});
+
 
     // getting weather data from darksky.net API
     $.ajax({
@@ -40,7 +49,6 @@ $(document).ready(function() {
       dataType: 'jsonp'
     })
     .done(function(data) {
-      console.log(data.currently);
       var weather = data.currently.summary;
       var icon = data.currently.icon;
       temperatureF = data.currently.temperature;
@@ -65,13 +73,17 @@ $(document).ready(function() {
 
   // togglebutton switching between Celsius and Farenheit
   $('.togglebutton').click(function() {
-
     if ($('#toggleCF').prop('checked')) {
       $('.temperature').html(temperatureF + ' ℉');
     } else {
       $('.temperature').html(temperatureC + ' ℃');
     }
 
+  });
+
+  $('.input-group-btn').on('click', function() {
+    var cityName = $('#addon1').val();
+    console.log(cityName);
   });
 
 
