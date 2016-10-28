@@ -3,7 +3,7 @@ $(document).ready(function() {
   $.material.init();
 
 
-  //connecting weather-icons to the icons property from the weather API
+  //connecting weather-icons to the icons property getting from the weather API
   var weatherIcons = {
     'clear-day': 'wi-day-sunny',
     'clear-night': 'wi-night-clear',
@@ -21,7 +21,7 @@ $(document).ready(function() {
   var temperatureC;
 
   // getting data from the browsers geolocation API (latitude, longitude)
-  if("geolocation" in navigator) {
+  if('geolocation' in navigator) {
 	navigator.geolocation.getCurrentPosition(function(position) {
     console.log(position);
 		// getting data from google's geocode API to determine the place from lat and long
@@ -83,7 +83,25 @@ $(document).ready(function() {
 
   $('.input-group-btn').on('click', function() {
     var cityName = $('#addon1').val();
-    console.log(cityName);
+    var cityURL = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + cityName + '';
+    $.ajax({
+      url: cityURL,
+      dataType: 'json'
+    })
+    .done(function(data) {
+      var cityLat = data.results[0].geometry.location.lat;
+      var cityLng = data.results[0].geometry.location.lng;
+      $.ajax({
+        url: 'https://api.darksky.net/forecast/51c52962b36fc78232c5d78a3ba8e5e8/' + cityLat + ',' + cityLng + '?callback=?',
+        dataType: 'jsonp'
+      })
+      .done(function(data) {
+        console.log(data);
+
+      });
+    });
+
+
   });
 
 
