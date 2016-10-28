@@ -16,7 +16,6 @@ $(document).ready(function() {
     'partly-cloudy-day': 'wi-day-cloudy',
     'partly-cloudy-night': 'wi-night-alt-cloudy'
   };
-
   var temperatureF;
   var temperatureC;
 
@@ -52,9 +51,8 @@ $(document).ready(function() {
       var weather = data.currently.summary;
       var icon = data.currently.icon;
       temperatureF = data.currently.temperature;
-      // getting Celsius from Farenheit
+      // getting Celsius from Farenheit:
       temperatureC = Math.round((temperatureF - 32)/1.8 * 100)/100;
-
       $('.weatherDescription').html(weather);
       // if the weatherIcons object has the property the api provides as icon
       if (weatherIcons.hasOwnProperty(icon) ) {
@@ -83,6 +81,7 @@ $(document).ready(function() {
 
   $('.input-group-btn').on('click', function() {
     var cityName = $('#addon1').val();
+    $('.city').html(cityName);
     var cityURL = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + cityName + '';
     $.ajax({
       url: cityURL,
@@ -96,7 +95,23 @@ $(document).ready(function() {
         dataType: 'jsonp'
       })
       .done(function(data) {
+        var weather = data.currently.summary;
+        var icon = data.currently.icon;
+        temperatureF = data.currently.temperature;
+        // getting Celsius from Farenheit:
+        temperatureC = Math.round((temperatureF - 32)/1.8 * 100)/100;
+        $('.weatherDescription').html(weather);
+        // if the weatherIcons object has the property the api provides as icon
+        if (weatherIcons.hasOwnProperty(icon) ) {
+          //display this icon
+          $('.weatherIcon').html('<i class="wi ' + weatherIcons[icon] + ' icon"></i>');
+        } else {
+          // display a neutral icon
+          $('.weatherIcon').html('<i class="wi wi-cloud icon"></i>');
+        }
+        $('.temperature').html(temperatureC + ' ℃');
         console.log(data);
+        $('#addon1').val('');
 
       });
     });
