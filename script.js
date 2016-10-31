@@ -2,6 +2,14 @@ $(document).ready(function() {
   // initializing material JS
   $.material.init();
 
+  // preloader starts
+  $("#status").fadeIn();
+  $("#preloader").fadeIn();
+
+
+  //var weatherData = function() {
+
+  //};
 
   //connecting weather-icons to the icons property getting from the weather API
   var weatherIcons = {
@@ -22,8 +30,10 @@ $(document).ready(function() {
   // getting data from the browsers geolocation API (latitude, longitude)
   if('geolocation' in navigator) {
 	navigator.geolocation.getCurrentPosition(function(position) {
-    console.log(position);
-		// getting data from google's geocode API to determine the place from lat and long
+    // preloader finishes:
+    $("#status").fadeOut();
+    $("#preloader").fadeOut();
+    // getting data from google's geocode API to determine the place from lat and long
     $.ajax({
       url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude + '',
       dataType: 'json'

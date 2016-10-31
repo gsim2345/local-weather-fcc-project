@@ -25,25 +25,39 @@
     <link href="style.css" rel="stylesheet" type="text/css"/>
   </head>
   <body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status">&nbsp;</div>
+    </div>
     <div class="container font">
 
       <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
+
+          <!-- panel with weather info starts here -->
           <div class="jumbotron" id="bigPanel">
               <h1 class="text-center font">The weather in:</h1>
+              <!-- City name displaying here -->
               <h1 class="text-center city font"></h1>
+
               <div class="row">
+                <!-- weather description and icon-->
                 <div class="col-md-6">
                   <div class="infoDiv1">
+                    <!--weather description displaying here-->
                     <h3 class="text-center weatherDescription font divElement"></h3>
+                    <!--weather icon displaying here-->
                     <p class="text-center weatherIcon divElement"></p>
                   </div>
                 </div>
+                <!-- temperature and togglebutton between C and F-->
                 <div class="col-md-6">
                   <div class="infoDiv2">
                     <h3 class="text-center font divElement">Temperature: </h3>
+                    <!--temperature displaying here in Celsius-->
                     <h3 class=" text-center temperature font divElement"></h3>
+                    <!--toggle Button-->
                     <div class="togglebutton text-center divElement">
                       <span class="temperatureType">℃</span>
                       <label class="">
@@ -51,28 +65,34 @@
                       </label>
                       <span class="temperatureType">℉</span>
                     </div>
+                    <!--toggle Button ends-->
                   </div>
                 </div>
               </div>
+
               <h2 class="text-center">Search the weather in another city:</h2>
+
               <div class="row">
                 <div class="col-md-1"></div>
                 <div class="col-md-10">
+                  <!--input form with search icon -->
                   <div class="form-group">
-                    <!--<label class="control-label" for="addon1"></label>-->
                     <div class="input-group">
                       <span class="input-group-addon"></span>
                       <input type="text" id="addon1" class="form-control">
                       <span class="input-group-btn">
-                        <a><i class="material-icons" id="searchIcon">search</i></a>
-                          <!--<button class="btn btn-default btn-sm btn-raised" type="button">Search</button>-->
+                        <a><i class="material-icons" id>search</i></a>
                       </span>
                     </div>
                   </div>
+
                 </div>
                 <div class="col-md-1"></div>
               </div>
+
           </div>
+          <!-- panel ends here -->
+
         </div>
         <div class="col-md-3"></div>
       </div>
