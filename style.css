@@ -13,7 +13,7 @@
 }
 
 body {
- background-image: url('images/photo-1451187580459-43490279c0fa.jpeg');
+ background-image: url('images/E5CwLOxQSFimIXJurfpq_IMG_6424 (1).jpg');
  background-size:100% auto;
  }
 
@@ -57,13 +57,24 @@ body {
 
 .form-control {
   color: white;
+  font-size: 25px;
 }
 
 .form-group.is-focused .form-control{
   background-image: linear-gradient(rgba(0, 150, 136, 0),rgba(0, 150, 136, 0)),linear-gradient(#D2D2D2,#D2D2D2);
 }
 
-.input-group-btn:last-child>.btn, .input-group-btn:last-child>.btn-group {
+/*.input-group-btn:last-child>.btn, .input-group-btn:last-child>.btn-group {
     z-index: 2;
     margin-left: 20px;
+  }*/
+
+  .material-icons {
+    font-size: 50px;
+    margin-left: 20px;
+
+  }
+
+  a, a:focus, a:hover {
+      color: white;
   }
