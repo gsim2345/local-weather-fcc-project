@@ -46,6 +46,8 @@ body {
   margin-right: 20px;
 }
 
+/*toggle button color change to white */
+
 .togglebutton label input[type=checkbox]:checked+.toggle:after {
     /* background-color: rgba(169, 170, 171, 0); */
     background-color: white;
@@ -54,6 +56,8 @@ body {
     /* background-color: white; */
     background-color: rgba(80,80,80,4);
 }
+
+/* City-name input change color to white */
 
 .form-control {
   color: white;
@@ -77,8 +81,12 @@ a, a:focus, a:hover {
       color: white;
   }
 
+/* alert Div */
+  .inactive {
+    display: none;
+  }
 
-/* https://www.niklausgerber.com/projects/preloadme-a-lightweight-jquery-website-preloader/index.html */
+/* preloader from https://www.niklausgerber.com/projects/preloadme-a-lightweight-jquery-website-preloader/index.html */
 
   #preloader {
     position:fixed;
