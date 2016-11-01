@@ -46,6 +46,10 @@ body {
   margin-right: 20px;
 }
 
+#temp {
+  font-size: 45px;
+}
+
 /*toggle button color change to white */
 
 .togglebutton label input[type=checkbox]:checked+.toggle:after {

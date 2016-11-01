@@ -2,6 +2,11 @@ $(document).ready(function() {
   // initializing material JS
   $.material.init();
 
+
+  // DECLARATIONS //
+
+
+
   var temperatureF;
   var temperatureC;
 
@@ -35,16 +40,37 @@ $(document).ready(function() {
       $('.weatherDescription').html(weather);
       // if the weatherIcons object has the property the api provides as icon
       if (weatherIcons.hasOwnProperty(icon) ) {
-        //display this icon
-        $('.weatherIcon').html('<i class="wi ' + weatherIcons[icon] + ' icon"></i>');
+        $('.weatherIcon').html('<i class="wi ' + weatherIcons[icon] + ' icon"></i>'); //display this icon
       } else {
-        // display a neutral icon
-        $('.weatherIcon').html('<i class="wi wi-cloud icon"></i>');
+        $('.weatherIcon').html('<i class="wi wi-cloud icon"></i>');     // display a neutral icon
       }
       $('.temperature').html(temperatureC + ' ℃');
       $('#addon1').val('');
+      $('.togglebutton').on('click', toggleFC);
     });
   };
+  // function switching between Celsius and Farenheit.
+  var toggleFC = function() {
+    if ($('#toggleCF').prop('checked')) {
+      $('.temperature').html(temperatureF + ' ℉');
+      } else {
+      $('.temperature').html(temperatureC + ' ℃');
+      }
+  };
+
+
+
+
+
+
+
+
+    // CODE//
+
+
+
+
+
 
   // preloader starts
   $("#status").fadeIn();
@@ -76,19 +102,15 @@ $(document).ready(function() {
 
     // on click on the search icon getting city name and the corresponding weather
     $('.input-group-btn').on('click', function() {
-      console.log($('#addon1').val());
-      var cityName = $('#addon1').val();
-      if (cityName === "") {
-          console.log('Please write a city name');
+      var cityName = $('#addon1').val();    // input value
+      if (cityName === "") {  // if nothing is written in the search field
           $('.city').html('');
           $('.weatherDescription').html('');
           $('.weatherIcon').html('<i class="wi wi-na icon"></i>');
-          $('.temperature').html('<i class="wi wi-na"></i>');
-          // adding alert 
-          $('.alert').removeClass('inactive');
+          $('.temperature').html('<i class="wi wi-na" id="temp"></i>');
+          $('.alert').removeClass('inactive');  // adding alert
       } else {
-          $('.city').html(cityName);
-          // remove alert if there was from earlier.
+          $('.city').html(cityName);    // remove alert if there was from earlier.
           $('.alert').addClass('inactive');
 
       }
@@ -101,9 +123,13 @@ $(document).ready(function() {
       })
       .done(function(data) {
         console.log(data);
-        if (data.status === "ZERO_RESULTS") {
-          console.log('Please write an existing city name');
+        if (data.status === "ZERO_RESULTS") {   // if the city name does not exist.
           $('.city').html('');
+          $('.weatherDescription').html('');
+          $('.weatherIcon').html('<i class="wi wi-na icon"></i>');
+          $('.temperature').html('<i class="wi wi-na" id="temp"></i>');
+          $('.alert').removeClass('inactive');  // adding alert
+          $('#addon1').val('');
         } else {
           var cityLat = data.results[0].geometry.location.lat;
           var cityLng = data.results[0].geometry.location.lng;
@@ -122,14 +148,7 @@ $(document).ready(function() {
   //});
 
 
-  // togglebutton switching between Celsius and Farenheit
-  $('.togglebutton').click(function() {
-    if ($('#toggleCF').prop('checked')) {
-      $('.temperature').html(temperatureF + ' ℉');
-      } else {
-      $('.temperature').html(temperatureC + ' ℃');
-      }
-    });
+
 
 
 
