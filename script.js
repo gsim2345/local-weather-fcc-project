@@ -31,12 +31,10 @@ $(document).ready(function() {
       dataType: 'jsonp'
     })
     .done(function(data) {
-      console.log(data);
       var weather = data.currently.summary;
       var icon = data.currently.icon;
       temperatureF = data.currently.temperature;
-      // getting Celsius from Farenheit:
-      temperatureC = Math.round((temperatureF - 32)/1.8 * 100)/100;
+      temperatureC = Math.round((temperatureF - 32)/1.8 * 100)/100;   // getting Celsius from Farenheit
       $('.weatherDescription').html(weather);
       // if the weatherIcons object has the property the api provides as icon
       if (weatherIcons.hasOwnProperty(icon) ) {
@@ -45,7 +43,7 @@ $(document).ready(function() {
         $('.weatherIcon').html('<i class="wi wi-cloud icon"></i>');     // display a neutral icon
       }
       $('.temperature').html(temperatureC + ' ℃');
-      $('#addon1').val('');                     // reseting input field to none
+      $('#addon1').val('');                     // reseting input field to empty
       $('#toggleCF').prop('checked', false);   // reseting the toggle button to C
       $('.togglebutton').on('click', toggleFC);
     });
@@ -92,8 +90,7 @@ $(document).ready(function() {
     .done(function(data) {
       var city = data.results[0].address_components[2].long_name;
       $('.city').html(city);
-
-    });
+      });
 
     // getting weather data from darksky.net API
     var positionUrl = 'https://api.darksky.net/forecast/51c52962b36fc78232c5d78a3ba8e5e8/' + position.coords.latitude + ',' + position.coords.longitude + '?callback=?';
@@ -111,8 +108,8 @@ $(document).ready(function() {
           $('.temperature').html('<i class="wi wi-na" id="temp"></i>');
           $('.alert').removeClass('inactive');  // adding alert
       } else {
-          $('.city').html(cityName);    // remove alert if there was from earlier.
-          $('.alert').addClass('inactive');
+          $('.city').html(cityName);
+          $('.alert').addClass('inactive'); // remove alert if there was from earlier.
 
       }
 
@@ -124,6 +121,7 @@ $(document).ready(function() {
       })
       .done(function(data) {
         console.log(data);
+
         if (data.status === "ZERO_RESULTS") {   // if the city name does not exist.
           $('.city').html('');
           $('.weatherDescription').html('');

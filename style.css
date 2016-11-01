@@ -22,7 +22,6 @@ body {
   background-color: rgba(249, 249, 249, 0.30);
   margin-top: 70px;
   min-height: 400px;
-  animation: fadeInFromNone 0.5s ease-out;
 }
 
 .font {
@@ -85,14 +84,28 @@ a, a:focus, a:hover {
       color: white;
   }
 
+
 /* alert Div */
-  .inactive {
+.inactive {
     display: none;
   }
 
+  /* Alert div color change */
+.alert.alert-warning {
+  background-color: white;
+  color: red;
+
+  }
+
+.alert h4 {
+  margin-bottom: 5px;
+  font-size: 20px;
+  text-shadow: 0px 1px 1px black;
+}
+
 /* preloader from https://www.niklausgerber.com/projects/preloadme-a-lightweight-jquery-website-preloader/index.html */
 
-  #preloader {
+#preloader {
     position:fixed;
     left: 0px;
     top: 0px;
