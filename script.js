@@ -45,7 +45,8 @@ $(document).ready(function() {
         $('.weatherIcon').html('<i class="wi wi-cloud icon"></i>');     // display a neutral icon
       }
       $('.temperature').html(temperatureC + ' ℃');
-      $('#addon1').val('');
+      $('#addon1').val('');                     // reseting input field to none
+      $('#toggleCF').prop('checked', false);   // reseting the toggle button to C
       $('.togglebutton').on('click', toggleFC);
     });
   };
