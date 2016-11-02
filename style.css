@@ -27,6 +27,7 @@ body {
   background-color: rgba(249, 249, 249, 0.10);
   margin-top: 60px;
   min-height: 400px;
+  padding-bottom: 5px;
 }
 
 .font {
@@ -113,6 +114,10 @@ a, a:focus, a:hover {
   text-shadow: 0px 1px 1px black;
 }
 
+.footer p {
+  font-size: 12px;
+  padding-top: 25px;
+}
 
 /* preloader from https://www.niklausgerber.com/projects/preloadme-a-lightweight-jquery-website-preloader/index.html */
 
