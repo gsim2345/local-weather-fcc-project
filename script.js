@@ -1,15 +1,11 @@
 $(document).ready(function() {
-  $.material.init();    // initializing material JS
-
-
-  // DECLARATIONS //
-
-
+  /** Initializing material design for bootstrap */
+  $.material.init();
 
   var temperatureF;
   var temperatureC;
 
-  //connecting weather-icons to the icons property getting from the weather API
+  /** connecting weather-icons to the icons property getting from the weather API */
   var weatherIcons = {
     'clear-day': 'wi-day-sunny',
     'clear-night': 'wi-night-clear',
@@ -23,8 +19,11 @@ $(document).ready(function() {
     'partly-cloudy-night': 'wi-night-alt-cloudy'
   };
 
-
-  // function getting data from the weather API and displaying it on the screen
+  /**
+   * function getting data from the weather API and displaying it on the screen
+   * @param  {string} url - darksky.net API url with latitude and longitude
+   * @return {[type]}     [description]
+   */
   var weatherData = function(url) {
     $.ajax({
       url: url,
@@ -55,7 +54,8 @@ $(document).ready(function() {
     });
   };
 
-  // function switching between Celsius and Farenheit.
+
+  /** function switching between Celsius and Farenheit */
   var toggleFC = function() {
     if ($('#toggleCF').prop('checked')) {
       $('.temperature').html(temperatureF + ' ℉');
@@ -66,17 +66,11 @@ $(document).ready(function() {
 
 
 
-
-    // CODE//
-
-
-
-  // preloader starts
+  /** preloader starts */
   $("#status").fadeIn();
   $("#preloader").fadeIn();
 
-
-  // getting data from the browsers geolocation API (latitude, longitude)
+  /** getting data from the browsers geolocation API (latitude, longitude) */
   if('geolocation' in navigator) {
 	   navigator.geolocation.getCurrentPosition(function(position) {
       // preloader finishes:
@@ -93,11 +87,8 @@ $(document).ready(function() {
         })
         .fail(function() {
           $('.city').html('Cannot load data');
-
-        });
-
-
-      // getting weather data from darksky.net API
+      });
+      /** getting weather data from darksky.net API */
       var positionUrl = 'https://api.darksky.net/forecast/51c52962b36fc78232c5d78a3ba8e5e8/' + position.coords.latitude + ',' + position.coords.longitude + '?callback=?';
       weatherData(positionUrl);
   	  });
@@ -105,8 +96,7 @@ $(document).ready(function() {
     } else {
       alert("Your browser doesn't support this feature.");
     }
-
-      // on click on the search icon getting city name and the corresponding weather
+    /** on clickin the search icon getting city name and the corresponding weather */
     $('.input-group-btn').on('click', function() {
       var cityName = $('#addon1').val();    // input value
       if (cityName === "") {  // if nothing is written in the search field
@@ -120,8 +110,7 @@ $(document).ready(function() {
           $('.alert').addClass('inactive'); // remove alert if there was from earlier.
 
       }
-
-        // getting the latitude and longitude of the city from input field
+        /** getting the latitude and longitude of the city from input field */
         var cityURL = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + cityName + '';
         $.ajax({
           url: cityURL,
@@ -149,6 +138,10 @@ $(document).ready(function() {
         });
 
         });     // end of onclick
+
+
+
+
   //$.ajax({
   //  url: 'http://api.sunrise-sunset.org/json?lat=' + position.coords.latitude + '&lng=' + position.coords.longitude + '&date=today',
   //  dataType: 'json'
@@ -156,4 +149,8 @@ $(document).ready(function() {
   //.done(function(data) {
   //  console.log(data);
   //});
+
+
+
+
 }); // document.ready
