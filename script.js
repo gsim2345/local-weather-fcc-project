@@ -1,6 +1,5 @@
 $(document).ready(function() {
-  // initializing material JS
-  $.material.init();
+  $.material.init();    // initializing material JS
 
 
   // DECLARATIONS //
@@ -24,6 +23,7 @@ $(document).ready(function() {
     'partly-cloudy-night': 'wi-night-alt-cloudy'
   };
 
+
   // function getting data from the weather API and displaying it on the screen
   var weatherData = function(url) {
     $.ajax({
@@ -45,9 +45,16 @@ $(document).ready(function() {
       $('.temperature').html(temperatureC + ' ℃');
       $('#addon1').val('');                     // reseting input field to empty
       $('#toggleCF').prop('checked', false);   // reseting the toggle button to C
+
       $('.togglebutton').on('click', toggleFC);
+    })
+    .fail(function(error) {
+      $('.weatherDescription').html('Failed to load data');
+      $('.weatherIcon').html('<i class="wi wi-na icon"></i>');
+      $('.temperature').html('<i class="wi wi-na" id="temp"></i>');
     });
   };
+
   // function switching between Celsius and Farenheit.
   var toggleFC = function() {
     if ($('#toggleCF').prop('checked')) {
@@ -60,14 +67,7 @@ $(document).ready(function() {
 
 
 
-
-
-
-
     // CODE//
-
-
-
 
 
 
@@ -78,27 +78,35 @@ $(document).ready(function() {
 
   // getting data from the browsers geolocation API (latitude, longitude)
   if('geolocation' in navigator) {
-	navigator.geolocation.getCurrentPosition(function(position) {
-    // preloader finishes:
-    $("#status").fadeOut();
-    $("#preloader").fadeOut();
-    // getting data from google's geocode API to determine the city name from lat and long and dispay it
-    $.ajax({
-      url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude + '',
-      dataType: 'json'
-    })
-    .done(function(data) {
-      var city = data.results[0].address_components[2].long_name;
-      $('.city').html(city);
-      });
+	   navigator.geolocation.getCurrentPosition(function(position) {
+      // preloader finishes:
+      $("#status").fadeOut();
+      $("#preloader").fadeOut();
+      // getting data from google's geocode API to determine the city name from lat and long and dispay it
+      $.ajax({
+        url: 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + position.coords.latitude + ',' + position.coords.longitude + '',
+        dataType: 'json'
+      })
+      .done(function(data) {
+        var city = data.results[0].address_components[2].long_name;
+        $('.city').html(city);
+        })
+        .fail(function() {
+          $('.city').html('Cannot load data');
 
-    // getting weather data from darksky.net API
-    var positionUrl = 'https://api.darksky.net/forecast/51c52962b36fc78232c5d78a3ba8e5e8/' + position.coords.latitude + ',' + position.coords.longitude + '?callback=?';
-    weatherData(positionUrl);
-	  });
+        });
+
+
+      // getting weather data from darksky.net API
+      var positionUrl = 'https://api.darksky.net/forecast/51c52962b36fc78232c5d78a3ba8e5e8/' + position.coords.latitude + ',' + position.coords.longitude + '?callback=?';
+      weatherData(positionUrl);
+  	  });
+
+    } else {
+      alert("Your browser doesn't support this feature.");
     }
 
-    // on click on the search icon getting city name and the corresponding weather
+      // on click on the search icon getting city name and the corresponding weather
     $('.input-group-btn').on('click', function() {
       var cityName = $('#addon1').val();    // input value
       if (cityName === "") {  // if nothing is written in the search field
@@ -113,31 +121,34 @@ $(document).ready(function() {
 
       }
 
-      // getting the latitude and longitude of the city from input field
-      var cityURL = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + cityName + '';
-      $.ajax({
-        url: cityURL,
-        dataType: 'json'
-      })
-      .done(function(data) {
-        console.log(data);
-
-        if (data.status === "ZERO_RESULTS") {   // if the city name does not exist.
-          $('.city').html('');
-          $('.weatherDescription').html('');
+        // getting the latitude and longitude of the city from input field
+        var cityURL = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + cityName + '';
+        $.ajax({
+          url: cityURL,
+          dataType: 'json'
+        })
+        .done(function(data) {
+          if (data.status === "ZERO_RESULTS") {   // if the city name does not exist.
+            $('.city').html('');
+            $('.weatherDescription').html('');
+            $('.weatherIcon').html('<i class="wi wi-na icon"></i>');
+            $('.temperature').html('<i class="wi wi-na" id="temp"></i>');
+            $('.alert').removeClass('inactive');  // adding alert
+            $('#addon1').val('');
+          } else {
+            var cityLat = data.results[0].geometry.location.lat;
+            var cityLng = data.results[0].geometry.location.lng;
+            var cityurl = 'https://api.darksky.net/forecast/51c52962b36fc78232c5d78a3ba8e5e8/' + cityLat + ',' + cityLng + '?callback=?';
+            weatherData(cityurl);
+          }
+        })
+        .fail(function() {
+          $('.weatherDescription').html('Failed to load data');
           $('.weatherIcon').html('<i class="wi wi-na icon"></i>');
           $('.temperature').html('<i class="wi wi-na" id="temp"></i>');
-          $('.alert').removeClass('inactive');  // adding alert
-          $('#addon1').val('');
-        } else {
-          var cityLat = data.results[0].geometry.location.lat;
-          var cityLng = data.results[0].geometry.location.lng;
-          var cityurl = 'https://api.darksky.net/forecast/51c52962b36fc78232c5d78a3ba8e5e8/' + cityLat + ',' + cityLng + '?callback=?';
-          weatherData(cityurl);
-        }
+        });
 
-      });
-
+        });     // end of onclick
   //$.ajax({
   //  url: 'http://api.sunrise-sunset.org/json?lat=' + position.coords.latitude + '&lng=' + position.coords.longitude + '&date=today',
   //  dataType: 'json'
@@ -145,14 +156,4 @@ $(document).ready(function() {
   //.done(function(data) {
   //  console.log(data);
   //});
-
-
-
-
-
-
-
-  }); // if('geolocation' in navigator)
-
-
 }); // document.ready
