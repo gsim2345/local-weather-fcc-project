@@ -2,58 +2,55 @@
   changing everything to border-box
 */
 
-*,
-*:before,
-*:after {
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
-
 body {
-  background-image: url('images/photo-1468807347182-fd4671fda58e.jpeg');
- /*background-size:100% auto;*/
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100%;
-  height: 100%;
-  background-attachment: fixed;
- }
-
+    background-image: url('images/photo-1468807347182-fd4671fda58e.jpeg');
+    /*background-size:100% auto;*/
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    background-attachment: fixed;
+}
 
 #bigPanel {
-  color: white;
-  background-color: rgba(249, 249, 249, 0.10);
-  margin-top: 60px;
-  min-height: 400px;
-  padding-bottom: 5px;
+    color: white;
+    background-color: rgba(249, 249, 249, 0.10);
+    margin-top: 60px;
+    min-height: 400px;
+    padding-bottom: 5px;
 }
 
 .font {
-  font-family: 'Muli', sans-serif;
-  font-weight: 200;
-  text-shadow: 2px 2px 1px black;
+    font-family: 'Muli', sans-serif;
+    font-weight: 200;
+    text-shadow: 2px 2px 1px black;
 }
 
 .icon {
-  font-size: 75px;
+    font-size: 75px;
 }
 
 .divElement {
-  margin-top: 25px;
+    margin-top: 25px;
 }
 
 .temperatureType {
-  font-size: 25px;
-  color: white;
-  padding-bottom: 0px;
-  margin-right: 20px;
+    font-size: 25px;
+    color: white;
+    padding-bottom: 0px;
+    margin-right: 20px;
 }
 
 #temp {
-  font-size: 45px;
+    font-size: 45px;
 }
+
 
 /*toggle button color change to white */
 
@@ -61,84 +58,97 @@ body {
     /* background-color: rgba(169, 170, 171, 0); */
     background-color: white;
 }
+
 .togglebutton label input[type=checkbox]:checked+.toggle {
     /* background-color: white; */
-    background-color: rgba(80,80,80,4);
+    background-color: rgba(80, 80, 80, 4);
 }
+
 
 /* City-name input change color to white */
 
 .form-control {
-  color: white;
-  font-size: 25px;
+    color: white;
+    font-size: 25px;
 }
 
-.form-group.is-focused .form-control{
-  background-image: linear-gradient(rgba(0, 150, 136, 0),rgba(0, 150, 136, 0)),linear-gradient(#D2D2D2,#D2D2D2);
+.form-group.is-focused .form-control {
+    background-image: linear-gradient(rgba(0, 150, 136, 0), rgba(0, 150, 136, 0)), linear-gradient(#D2D2D2, #D2D2D2);
 }
 
 .form-control, .form-group .form-control {
+    background-image: linear-gradient(#009688, #009688), linear-gradient(white, white);
+}
 
-    background-image: linear-gradient(#009688,#009688),linear-gradient(white,white);
-
-  }
 
 /* Search icon CSS */
+
 .material-icons {
     font-size: 50px;
     margin-left: 20px;
+}
 
-  }
 
 /* Search icon color change */
+
 a, a:focus, a:hover {
-      color: white;
-  }
+    color: white;
+}
 
 
 /* alert Div */
+
 .inactive {
     display: none;
-  }
+}
 
-  /* Alert div color change */
+
+/* Alert div color change */
+
 .alert.alert-warning {
-  background-color: white;
-  color: red;
-
-  }
+    background-color: white;
+    color: red;
+}
 
 .alert h4 {
-  margin-bottom: 5px;
-  font-size: 20px;
-  text-shadow: 0px 1px 1px black;
+    margin-bottom: 5px;
+    font-size: 20px;
+    text-shadow: 0px 1px 1px black;
 }
 
 .footer p {
-  font-size: 12px;
-  padding-top: 25px;
+    font-size: 12px;
+    padding-top: 25px;
+    padding-bottom: 0px;
 }
+
 
 /* preloader from https://www.niklausgerber.com/projects/preloadme-a-lightweight-jquery-website-preloader/index.html */
 
 #preloader {
-    position:fixed;
+    position: fixed;
     left: 0px;
     top: 0px;
     width: 100%;
     height: 100%;
-    background-color:#fff; /* change if the mask should have another color then white */
-    z-index:99; /* makes sure it stays on top */
+    background-color: #fff;
+    /* change if the mask should have another color then white */
+    z-index: 99;
+    /* makes sure it stays on top */
 }
 
 #status {
-    width:200px;
-    height:200px;
-    position:absolute;
-    left:50%; /* centers the loading animation horizontally one the screen */
-    top:50%; /* centers the loading animation vertically one the screen */
-    background-image:url('images/status.gif'); /* path to your loading animation */
-    background-repeat:no-repeat;
-    background-position:center;
-    margin:-100px 0 0 -100px; /* is width and height divided by two */
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    left: 50%;
+    /* centers the loading animation horizontally one the screen */
+    top: 50%;
+    /* centers the loading animation vertically one the screen */
+    background-image: url('images/status.gif');
+    /* path to your loading animation */
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: -100px 0 0 -100px;
+    /* is width and height divided by two */
 }

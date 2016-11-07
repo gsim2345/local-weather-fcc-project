@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,11 +23,11 @@
     <!-- Weather icons CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.9/css/weather-icons.min.css" />
     <!-- link to CSS file -->
-    <link href="style.css" rel="stylesheet" type="text/css"/>
-  </head>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
 
 
-  <body>
+<body>
     <!-- Preloader -->
     <div id="preloader">
         <div id="status">&nbsp;</div>
@@ -35,104 +36,104 @@
 
 
     <div class="container font">
-      <div class="row">
-        <div class="col-md-3"></div>
+        <div class="row">
+            <div class="col-md-3"></div>
 
 
-        <div class="col-md-6">
+            <div class="col-md-6">
 
-          <!-- panel with weather info starts here -->
-          <div class="jumbotron" id="bigPanel">
-              <h1 class="text-center font">The weather in:</h1>
-              <!-- City name displaying here -->
-              <h1 class="text-center city font"></h1>
+                <!-- panel with weather info starts here -->
+                <div class="jumbotron" id="bigPanel">
+                    <h1 class="text-center font">The weather in:</h1>
+                    <!-- City name displaying here -->
+                    <h1 class="text-center city font"></h1>
 
-              <div class="row">
-                <!-- weather description and icon-->
-                <div class="col-md-6">
-                  <div class="infoDiv1">
-                    <!--weather description displaying here-->
-                    <h3 class="text-center weatherDescription font divElement"></h3>
-                    <!--weather icon displaying here-->
-                    <p class="text-center weatherIcon divElement"></p>
-                  </div>
-                </div>
-                <!-- temperature and togglebutton between C and F-->
-                <div class="col-md-6">
-                  <div class="infoDiv2">
-                    <h3 class="text-center font divElement">Temperature: </h3>
-                    <!--temperature displaying here in Celsius-->
-                    <h3 class=" text-center temperature font divElement"></h3>
-                    <!--toggle Button-->
-                    <div class="togglebutton text-center divElement">
-                      <span class="temperatureType">℃</span>
-                      <label class="">
+                    <div class="row">
+                        <!-- weather description and icon-->
+                        <div class="col-md-6">
+                            <div class="infoDiv1">
+                                <!--weather description displaying here-->
+                                <h3 class="text-center weatherDescription font divElement"></h3>
+                                <!--weather icon displaying here-->
+                                <p class="text-center weatherIcon divElement"></p>
+                            </div>
+                        </div>
+                        <!-- temperature and togglebutton between C and F-->
+                        <div class="col-md-6">
+                            <div class="infoDiv2">
+                                <h3 class="text-center font divElement">Temperature: </h3>
+                                <!--temperature displaying here in Celsius-->
+                                <h3 class=" text-center temperature font divElement"></h3>
+                                <!--toggle Button-->
+                                <div class="togglebutton text-center divElement">
+                                    <span class="temperatureType">℃</span>
+                                    <label class="">
                         <input id="toggleCF" type="checkbox" unchecked>
                       </label>
-                      <span class="temperatureType">℉</span>
+                                    <span class="temperatureType">℉</span>
+                                </div>
+                                <!--toggle Button ends-->
+                            </div>
+                        </div>
                     </div>
-                    <!--toggle Button ends-->
-                  </div>
-                </div>
-              </div>
 
-              <h2 class="text-center">Search the weather in another city:</h2>
-              <div class="row">
-                <div class="col-md-12">
-                  <!--alert div-->
+                    <h2 class="text-center">Search the weather in another city:</h2>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <!--alert div-->
 
-                  <div class="alert alert-warning inactive">
-                    <!--<button type="button" class="close" data-dismiss="alert">×</button>-->
-                    <h4 class="text-center">Please write an existing city name into the searchfield!</h4>
-                  </div>
+                            <div class="alert alert-warning inactive">
+                                <!--<button type="button" class="close" data-dismiss="alert">×</button>-->
+                                <h4 class="text-center">Please write an existing city name into the searchfield!</h4>
+                            </div>
 
-                </div>
-              </div>
+                        </div>
+                    </div>
 
-              <div class="row">
-                <div class="col-md-1"></div>
-                <div class="col-md-10">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
 
-                  <!--input form with search icon -->
-                  <div class="form-group">
-                    <div class="input-group">
-                      <span class="input-group-addon"></span>
-                      <input type="text" id="addon1" class="form-control">
-                      <span class="input-group-btn">
+                            <!--input form with search icon -->
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"></span>
+                                    <input type="text" id="addon1" class="form-control">
+                                    <span class="input-group-btn">
                         <a><i class="material-icons" id>search</i></a>
                       </span>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-1"></div>
                     </div>
-                  </div>
+
+                    <footer class="footer">
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <p class="text-center"><a href="https://darksky.net" target="_blank">Darksky.net</a></p>
+                            </div>
+                            <div class="col-md-4">
+                                <p class="text-center"><a href="https://erikflowers.github.io/weather-icons/" target="_blank">weather-icons</a></p>
+                            </div>
+                            <div class="col-md-4">
+                                <p class="text-center"><a href="https://unsplash.com/" target="_blank">unsplash.com</a></p>
+                            </div>
+                        </div>
+
+                    </footer>
 
                 </div>
-                <div class="col-md-1"></div>
-              </div>
-
-              <footer class="footer">
-
-                  <div class="row">
-                    <div class="col-md-4">
-                      <p class="text-center"><a href="https://darksky.net" target="_blank">Darksky.net</a></p>
-                    </div>
-                    <div class="col-md-4">
-                      <p class="text-center"><a href="https://erikflowers.github.io/weather-icons/" target="_blank">weather-icons</a></p>
-                    </div>
-                    <div class="col-md-4">
-                      <p class="text-center"><a href="https://unsplash.com/" target="_blank">unsplash.com</a></p>
-                    </div>
-                  </div>
-              
-              </footer>
-
-          </div>
-          <!-- panel ends here -->
+                <!-- panel ends here -->
 
 
 
 
+            </div>
+            <div class="col-md-3"></div>
         </div>
-        <div class="col-md-3"></div>
-      </div>
 
 
 
@@ -144,13 +145,14 @@
 
 
     <!-- jQuery -->
-    <script   src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <!-- Bootstrap JS-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <!-- Bootstrap Material Design JS-->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/material.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.5.10/js/ripples.min.js"></script>
     <!-- link to js file -->
-      <script src="script.js"></script>
-  </body>
+    <script src="script.js"></script>
+</body>
+
 </html>
