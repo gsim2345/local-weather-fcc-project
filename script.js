@@ -63,6 +63,48 @@ $(document).ready(function () {
             });
     };
 
+    var displayWeatherFromInput = function() {
+      var cityName = $('#addon1').val(); // input value
+      if (cityName === "") { // if nothing is written in the search field
+          $('.city').html('');
+          $('.weatherDescription').html('');
+          $('.weatherIcon').html('<i class="wi wi-na icon"></i>');
+          $('.temperature').html('<i class="wi wi-na" id="temp"></i>');
+          $('.alert').removeClass('inactive'); // adding alert
+      } else {
+          $('.city').html(cityName);
+          $('.alert').addClass('inactive'); // remove alert if there was from earlier.
+
+      }
+      /** getting the latitude and longitude of the city from input field */
+      var cityURL = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + cityName + '';
+      $.ajax({
+              url: cityURL,
+              dataType: 'json'
+          })
+          .done(function(data) {
+              if (data.status === "ZERO_RESULTS") { // if the city name does not exist.
+                  $('.city').html('');
+                  $('.weatherDescription').html('');
+                  $('.weatherIcon').html('<i class="wi wi-na icon"></i>');
+                  $('.temperature').html('<i class="wi wi-na" id="temp"></i>');
+                  $('.alert').removeClass('inactive'); // adding alert
+                  $('#addon1').val('');
+              } else {
+                  var cityLat = data.results[0].geometry.location.lat;
+                  var cityLng = data.results[0].geometry.location.lng;
+                  var cityurl = 'https://api.darksky.net/forecast/51c52962b36fc78232c5d78a3ba8e5e8/' + cityLat + ',' + cityLng + '?callback=?';
+                  fetchWeatherData(cityurl);
+              }
+          })
+          .fail(function () {
+              $('.weatherDescription').html('Failed to load weather data');
+              $('.weatherIcon').html('<i class="wi wi-na icon"></i>');
+              $('.temperature').html('<i class="wi wi-na" id="temp"></i>');
+          });
+
+    };
+
 
 
 
@@ -100,44 +142,15 @@ $(document).ready(function () {
     }
     /** on clickin the search icon getting city name and the corresponding weather */
     $('.input-group-btn').on('click', function () {
-        var cityName = $('#addon1').val(); // input value
-        if (cityName === "") { // if nothing is written in the search field
-            $('.city').html('');
-            $('.weatherDescription').html('');
-            $('.weatherIcon').html('<i class="wi wi-na icon"></i>');
-            $('.temperature').html('<i class="wi wi-na" id="temp"></i>');
-            $('.alert').removeClass('inactive'); // adding alert
-        } else {
-            $('.city').html(cityName);
-            $('.alert').addClass('inactive'); // remove alert if there was from earlier.
+        displayWeatherFromInput();
+      }); // end of onclick
 
+    /** on enter getting city name and the corresponding weather */
+    $('#addon1').on('keyup', function (event) {
+        if (event.which === 13) {
+          displayWeatherFromInput();
         }
-        /** getting the latitude and longitude of the city from input field */
-        var cityURL = 'https://maps.googleapis.com/maps/api/geocode/json?address=' + cityName + '';
-        $.ajax({
-                url: cityURL,
-                dataType: 'json'
-            })
-            .done(function(data) {
-                if (data.status === "ZERO_RESULTS") { // if the city name does not exist.
-                    $('.city').html('');
-                    $('.weatherDescription').html('');
-                    $('.weatherIcon').html('<i class="wi wi-na icon"></i>');
-                    $('.temperature').html('<i class="wi wi-na" id="temp"></i>');
-                    $('.alert').removeClass('inactive'); // adding alert
-                    $('#addon1').val('');
-                } else {
-                    var cityLat = data.results[0].geometry.location.lat;
-                    var cityLng = data.results[0].geometry.location.lng;
-                    var cityurl = 'https://api.darksky.net/forecast/51c52962b36fc78232c5d78a3ba8e5e8/' + cityLat + ',' + cityLng + '?callback=?';
-                    fetchWeatherData(cityurl);
-                }
-            })
-            .fail(function () {
-                $('.weatherDescription').html('Failed to load weather data');
-                $('.weatherIcon').html('<i class="wi wi-na icon"></i>');
-                $('.temperature').html('<i class="wi wi-na" id="temp"></i>');
-            });
+      }); // end of on keyup
 
-    }); // end of onclick
+
 }); // document.ready
